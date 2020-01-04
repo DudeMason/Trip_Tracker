@@ -4,11 +4,11 @@ import {Menu, Icon} from 'semantic-ui-react';
 
 const Navbar = () => (
 
-  <Menu>
+  <Menu size='massive'>
 
     <Link to='/'>
       <Menu.Item>
-        <Icon name='plane' color='blue'/>
+        <Icon className='planeCrash' name='plane' color='blue'/>
         Home
       </Menu.Item>
     </Link>

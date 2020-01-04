@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Segment, Button, Rail, Icon} from 'semantic-ui-react';
+import {Segment, Button, Icon, Header} from 'semantic-ui-react';
 import AddressForm from './address/AddressForm';
 import Address from './address/Address';
 import LocationForm from './LocationForm';
@@ -18,7 +18,7 @@ export default class Location extends Component {
 
     return(
 
-      <Segment compact textAlign="center" href=''>
+      <Segment compact textAlign="center" size='big'>
         {this.state.edit
         ?
         <>
@@ -34,8 +34,7 @@ export default class Location extends Component {
         </>
         :
         <>
-          <p>Location Name</p>
-          <p>{name}</p>
+          <Header>{name}</Header>
           <p>For {days} days</p>
 
           {editing

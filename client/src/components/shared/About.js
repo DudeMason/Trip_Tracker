@@ -4,12 +4,12 @@ import {Header, Segment, Container} from 'semantic-ui-react';
 const About = () => (
 
   <Container>
-    <Header>
+    <Header as='h1'>
       About Us
     </Header>
 
-    <Segment compact>
-      We friggin' built this, bruv. We are cool dudes in a WebDev class.
+    <Segment compact size='huge'>
+      We friggin' built this, bruv. We are cool dudes from DevPoint Labs.
     </Segment>
   </Container>
 )

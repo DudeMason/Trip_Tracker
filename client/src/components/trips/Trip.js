@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Segment, Rail, Button, Icon, Divider, Container, List} from 'semantic-ui-react';
+import {Segment, Header, Button, Icon, Divider, Container, List} from 'semantic-ui-react';
 import LocationForm from './location/LocationForm';
 import LocationList from './location/LocationList';
 import TripForm from './TripForm';
@@ -42,10 +42,12 @@ export default class Trip extends Component {
                 pathname: `/trip/${id}/locations`,
                 state: {id, name, start_date, end_date}
               }}>
-                <List divided>
+                <List divided size='large'>
                   <List.Item>
                     <List.Content>
-                      Trip: {name}
+                      <Header as='h3'>
+                        Trip: {name}
+                      </Header>
                     </List.Content>
 
                     <List.Content>

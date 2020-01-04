@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header, Segment, Container} from 'semantic-ui-react';
 
-const About = () => (
+const Home = () => (
 
   <Container>
     <Header as='h1' textAlign='center'>
@@ -10,4 +10,4 @@ const About = () => (
   </Container>
 )
 
-export default About;
+export default Home;
