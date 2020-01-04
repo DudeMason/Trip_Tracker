@@ -1,4 +1,4 @@
-class Api::sController < ApplicationController
+class Api::LocationsController < ApplicationController
 
   before_action :set_trip
 

@@ -1,19 +1,62 @@
 import React, {Component} from 'react';
-import {Container, Header} from 'semantic-ui-react';
+import {Form, Button} from 'semantic-ui-react';
 
 export default class LocationForm extends Component {
 
+  state = {name: '', days: null}
+
+  componentDidMount() {
+    if (this.props.id) {
+      const {name, days} = this.props
+      this.setState({
+        name, days
+      })
+    }
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    if (this.props.id) {
+      this.props.updateLocation( this.props.id, this.state )
+      this.props.toggleHer()
+    } else {
+      this.props.addLocation(this.state)
+      this.props.toggleAdding()
+    }
+    this.setState({
+      name: '',
+      days: null
+    })
+  }
+
+  handleChange = (e) => {
+    const {name, value} = e.target
+    this.setState({ [name]: value })
+  }
+
   render() {
+
+    const{name, days} = this.state
 
     return(
 
       <>
-        <Header as='h1' textAlign='center'>
-          Location Form!
-        </Header>
-        <Container>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Input
+            name='name'
+            value={name}
+            onChange={this.handleChange}
+            label='Name'
+          />
+          <Form.Input
+            name='days'
+            value={days}
+            onChange={this.handleChange}
+            label='Days'
+          />
 
-        </Container>
+          <Button type='submit' color='green'>Submit</Button>
+        </Form>
       </>
     )
   }
