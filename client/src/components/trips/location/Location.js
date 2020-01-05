@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Segment, Button, Icon, Header} from 'semantic-ui-react';
-import AddressForm from './address/AddressForm';
-import Address from './address/Address';
 import LocationForm from './LocationForm';
+import {Link} from 'react-router-dom';
 
 export default class Location extends Component {
 
@@ -14,7 +13,7 @@ export default class Location extends Component {
 
   render() {
 
-    const {id, name, days, editing, toggleEditing, removeLocation, updateLocation} = this.props
+    const {id, name, days, editing, removeLocation, updateLocation} = this.props
 
     return(
 
@@ -34,23 +33,28 @@ export default class Location extends Component {
         </>
         :
         <>
-          <Header>{name}</Header>
-          <p>For {days} days</p>
+          <Link to={{
+            pathname: `/location/${id}/addresses`,
+            state: {id, name, days}
+          }}>
+            <Header>{name}</Header>
+            <p>For {days} days</p>
 
-          {editing
-            ?
-            <>
-              <Button compact onClick={this.toggleHer} color='blue'>
-                <Icon name='pencil' />
-              </Button>
+            {editing
+              ?
+              <>
+                <Button compact onClick={this.toggleHer} color='blue'>
+                  <Icon name='pencil' />
+                </Button>
 
-              <Button compact onClick={() => removeLocation(id)} color='red'>
-                <Icon name='trash' />
-              </Button>
-            </>
-            :
-            null
-          }
+                <Button compact onClick={() => removeLocation(id)} color='red'>
+                  <Icon name='trash' />
+                </Button>
+              </>
+              :
+              null
+            }
+          </Link>
         </>
         }
       </Segment>

@@ -13,11 +13,16 @@ code {
 }
 
 .planeCrash:hover  {
-  animation: spinner 2s infinite;
+animation: spinner 5s infinite;
   transform: rotate(360deg);
 }
 
 @keyframes spinner {
   from {transform: rotate(0deg)};
   to  {transform: rotate(360deg)} ;
+}
+
+.video {
+  margin: 0 auto;
+  width: 100%;
 }

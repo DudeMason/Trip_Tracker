@@ -52,6 +52,7 @@ export default class TripForm extends Component {
           />
 
           <Form.Input
+            type='date'
             name='start_date'
             value={start_date}
             onChange={this.handleChange}
@@ -59,6 +60,7 @@ export default class TripForm extends Component {
           />
 
           <Form.Input
+            type='date'
             name='end_date'
             value={end_date}
             onChange={this.handleChange}

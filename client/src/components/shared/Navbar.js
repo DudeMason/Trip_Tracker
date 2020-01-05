@@ -15,7 +15,7 @@ const Navbar = () => (
 
     <Link to='/trip'>
       <Menu.Item>
-        <Icon name='map outline'/>
+        <Icon className='mapCrunch' name='map outline'/>
         Plan a Trip
       </Menu.Item>
     </Link>

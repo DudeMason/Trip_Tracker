@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Segment, Header, Grid} from 'semantic-ui-react';
+import {Segment, Grid} from 'semantic-ui-react';
 import Trip from './Trip';
 
 export default class TripList extends Component {
@@ -12,7 +12,7 @@ export default class TripList extends Component {
 
       <>
         <Segment>
-          <Grid columns='3' align='center' divided>
+          <Grid columns='3' align='center' divided stackable>
           {trips.map(t =>
 
               <Grid.Column key={t.id}>

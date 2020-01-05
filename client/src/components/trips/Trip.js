@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import {Segment, Header, Button, Icon, Divider, Container, List} from 'semantic-ui-react';
-import LocationForm from './location/LocationForm';
-import LocationList from './location/LocationList';
+import {Header, Button, Icon, Divider, Container, List} from 'semantic-ui-react';
 import TripForm from './TripForm';
 import {Link} from 'react-router-dom';
 
@@ -15,7 +13,7 @@ export default class Trip extends Component {
 
   render() {
 
-    const {id, name, start_date, end_date, removeTrip, updateTrip, editing} = this.props
+    const {id, name, start_date, end_date, removeTrip, editing} = this.props
 
     return(
 
@@ -25,16 +23,7 @@ export default class Trip extends Component {
             {this.state.edit
             ?
             <>
-            <Button onClick={() => this.toggleIt()} color='blue' compact>
-              <Icon name='minus'/>
-            </Button>
-
-            <Button onClick={() => this.removeTrip(id)} color='red'>
-              <Icon name='trash' />
-            </Button>
-
-            <TripForm {...this.props} toggleIt={this.toggleIt}/>
-
+              <TripForm {...this.props} toggleIt={this.toggleIt}/>
             </>
             :
             <>
@@ -46,7 +35,7 @@ export default class Trip extends Component {
                   <List.Item>
                     <List.Content>
                       <Header as='h3'>
-                        Trip: {name}
+                        {name}
                       </Header>
                     </List.Content>
 
@@ -62,7 +51,7 @@ export default class Trip extends Component {
               </Link>
             </>
 
-            }
+          }
           </>
 
               {editing

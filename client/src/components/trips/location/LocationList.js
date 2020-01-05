@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Header, Button, Grid, Segment} from 'semantic-ui-react';
+import {Header, Button, Grid, Segment, Container} from 'semantic-ui-react';
 import Location from './Location';
 import axios from 'axios';
 import LocationForm from './LocationForm';
@@ -67,17 +67,23 @@ export default class LocationList extends Component {
 
   render() {
 
-    const {locations} = this.state
+    const {locations} = this.state;
+    const {start_date, end_date, name} = this.props.location.state;
 
     return(
 
       <>
         <Header as='h1' textAlign='center'>
-          {this.props.location.state.name}
+          {name}
         </Header>
+
+        <Container textAlign='center'>
+          From {start_date.split('T00:00:00.000Z')} to {end_date.split('T00:00:00.000Z')}
+        </Container>
+
         <Grid columns='3' align='center'>
           {locations.map(l =>
-            <Grid.Column>
+            <Grid.Column key={l.id}>
               <Location key={l.id} {...l} removeLocation={this.removeLocation} toggleEditing={this.toggleEditing} editing={this.state.editing} updateLocation={this.updateLocation}/>
             </Grid.Column>)}
         </Grid>
