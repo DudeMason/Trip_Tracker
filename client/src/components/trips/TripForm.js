@@ -49,6 +49,7 @@ export default class TripForm extends Component {
             value={name}
             onChange={this.handleChange}
             label='Name'
+            required
           />
 
           <Form.Input
@@ -57,6 +58,7 @@ export default class TripForm extends Component {
             value={start_date}
             onChange={this.handleChange}
             label='Start Date'
+            required
           />
 
           <Form.Input
@@ -65,6 +67,7 @@ export default class TripForm extends Component {
             value={end_date}
             onChange={this.handleChange}
             label='End Date'
+            required
           />
           <Button type='submit' color='green'>Submit</Button>
         </Form>
