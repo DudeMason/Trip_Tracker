@@ -3,11 +3,11 @@ class Api::AddressesController < ApplicationController
   before_action :set_location
 
   def index
-    render json: @location.address
+    render json: @location.addresses
   end
 
   def create
-    @address = @location.address.new(address_params)
+    @address = @location.addresses.new(address_params)
     if @address.save
       render json: @address
     else
@@ -16,7 +16,7 @@ class Api::AddressesController < ApplicationController
   end
 
   def update
-    @address = @location.address
+    @address = @location.addresses
     if @address.update(address_params)
       render json: @address
     else
@@ -25,7 +25,7 @@ class Api::AddressesController < ApplicationController
   end
 
   def destroy
-    @location.address.destroy
+    @location.addresses.destroy
     render json: {message: 'Address has been wrecked, bro'}
   end
 
