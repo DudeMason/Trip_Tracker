@@ -75,7 +75,15 @@ export default class Address extends Component {
         :
           <>
             <Segment>
-              {this.state.addresses}
+              {this.state.addresses.map(
+                a =>
+                <>
+                  {a.street}
+                  {a.city}
+                  {a.state}
+                  {a.zip}
+                </>
+              )}
             </Segment>
             <Button onClick={this.toggleEdit} color='blue'>Edit Address</Button>
           </>
