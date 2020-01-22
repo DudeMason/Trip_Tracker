@@ -43,6 +43,7 @@ export default class TripForm extends Component {
     return(
 
       <>
+        <br/>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input
             name='name'

@@ -79,8 +79,10 @@ export default class Address extends Component {
                 a =>
                 <>
                   {a.street}
-                  {a.city}
-                  {a.state}
+                  <br/>
+                  {a.city},
+                  {` ${a.state}`}
+                  <br/>
                   {a.zip}
                 </>
               )}

@@ -39,7 +39,7 @@ export default class Location extends Component {
           }}>
             <Header>{name}</Header>
             <p>For {days} days</p>
-
+          </Link>
             {editing
               ?
               <>
@@ -54,7 +54,6 @@ export default class Location extends Component {
               :
               null
             }
-          </Link>
         </>
         }
       </Segment>
