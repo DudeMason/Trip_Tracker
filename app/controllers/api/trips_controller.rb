@@ -1,11 +1,13 @@
 class Api::TripsController < ApplicationController
 
+  before_action :set_user
+
   def index
-    render json: Trip.all
+    render json: @user.trips.all
   end
 
   def create
-    @trip = Trip.new(trip_params)
+    @trip = @user.trips.new(trip_params)
     if @trip.save
       render json: @trip
     else
@@ -14,7 +16,7 @@ class Api::TripsController < ApplicationController
   end
 
   def update
-    @trip = Trip.find(params[:id])
+    @trip = @user.trips.find(params[:id])
     if @trip.update(trip_params)
       render json: @trip
     else
@@ -23,11 +25,15 @@ class Api::TripsController < ApplicationController
   end
 
   def destroy
-    Trip.find(params[:id]).destroy
+    @user.trips.find(params[:id]).destroy
     render json: {message: 'Trip has been wrecked, bro'}
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
   def trip_params
     params.require(:trip).permit(:name, :start_date, :end_date)

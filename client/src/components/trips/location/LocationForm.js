@@ -3,7 +3,7 @@ import {Form, Button} from 'semantic-ui-react';
 
 export default class LocationForm extends Component {
 
-  state = {name: '', days: null}
+  state = {name: '', days: ''}
 
   componentDidMount() {
     if (this.props.id) {

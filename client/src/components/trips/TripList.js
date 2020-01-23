@@ -11,7 +11,7 @@ export default class TripList extends Component {
     return(
 
       <>
-        <Segment>
+        <Segment style={{padding: 30}}>
           <Grid columns='3' align='center' divided stackable>
           {trips.map(t =>
 

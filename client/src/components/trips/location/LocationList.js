@@ -68,7 +68,7 @@ export default class LocationList extends Component {
   render() {
 
     const {locations} = this.state;
-    const {start_date, end_date, name} = this.props.location.state;
+    const {start, end, name} = this.props.location.state;
 
     return(
 
@@ -78,7 +78,7 @@ export default class LocationList extends Component {
         </Header>
 
         <Container textAlign='center'>
-          From {start_date.split('T00:00:00.000Z')} to {end_date.split('T00:00:00.000Z')}
+          From {start} to {end}
         </Container>
 
         <Grid columns='3' align='center'>

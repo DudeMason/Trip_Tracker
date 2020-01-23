@@ -16,7 +16,7 @@ class Api::AddressesController < ApplicationController
   end
 
   def update
-    @address = @location.addresses
+    @address = @location.addresses(params[:id])
     if @address.update(address_params)
       render json: @address
     else
@@ -25,7 +25,7 @@ class Api::AddressesController < ApplicationController
   end
 
   def destroy
-    @location.addresses.destroy
+    @location.addresses.find(params[:id]).destroy
     render json: {message: 'Address has been wrecked, bro'}
   end
 

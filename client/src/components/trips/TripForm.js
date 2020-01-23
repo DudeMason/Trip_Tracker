@@ -3,7 +3,7 @@ import {Button, Form} from 'semantic-ui-react';
 
 export default class TripForm extends Component {
 
-  state = {name: '', start_date: undefined, end_date: undefined}
+  state = {name: '', start_date: '', end_date: ''}
 
   componentDidMount() {
     if (this.props.id) {
@@ -17,10 +17,10 @@ export default class TripForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     if (this.props.id) {
-      this.props.updateTrip( this.props.id, this.state )
+      this.props.updateTrip( this.props.auth.id, this.props.id, this.state )
       this.props.toggleIt()
     } else {
-      this.props.addTrip(this.state)
+      this.props.addTrip( this.props.auth.id, this.state)
       this.props.toggleAdd()
     }
     this.setState({
@@ -50,7 +50,6 @@ export default class TripForm extends Component {
             value={name}
             onChange={this.handleChange}
             label='Name'
-            required
           />
 
           <Form.Input
@@ -59,6 +58,7 @@ export default class TripForm extends Component {
             value={start_date}
             onChange={this.handleChange}
             label='Start Date'
+            width={4}
             required
           />
 
@@ -68,6 +68,7 @@ export default class TripForm extends Component {
             value={end_date}
             onChange={this.handleChange}
             label='End Date'
+            width={4}
             required
           />
           <Button type='submit' color='green'>Submit</Button>

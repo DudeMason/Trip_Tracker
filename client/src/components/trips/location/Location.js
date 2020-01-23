@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Segment, Button, Icon, Header} from 'semantic-ui-react';
+import {Segment, Button, Icon, List, Header} from 'semantic-ui-react';
 import LocationForm from './LocationForm';
 import {Link} from 'react-router-dom';
 
@@ -37,8 +37,12 @@ export default class Location extends Component {
             pathname: `/location/${id}/addresses`,
             state: {id, name, days}
           }}>
-            <Header>{name}</Header>
-            <p>For {days} days</p>
+            <List selection>
+              <List.Item>
+                <Header>{name}</Header>
+                <p style={{fontSize: 12, color: 'black' }}>For {days} days</p>
+              </List.Item>
+            </List>
           </Link>
             {editing
               ?

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Header, Button, Icon, Divider, Container, List} from 'semantic-ui-react';
+import {Header, Button, Icon, Container, List} from 'semantic-ui-react';
 import TripForm from './TripForm';
 import {Link} from 'react-router-dom';
 
@@ -14,6 +14,10 @@ export default class Trip extends Component {
   render() {
 
     const {id, name, start_date, end_date, removeTrip, editing} = this.props
+    let startDate = new Date(`${start_date}`);
+    let endDate = new Date(`${end_date}`);
+    let start = parseInt(startDate.getUTCMonth()+1) +"/"+ startDate.getUTCDate() +"/"+startDate.getUTCFullYear();
+    let end = parseInt(endDate.getUTCMonth()+1) +"/"+ endDate.getUTCDate() +"/"+endDate.getUTCFullYear();
 
     return(
 
@@ -29,9 +33,9 @@ export default class Trip extends Component {
             <>
               <Link to={{
                 pathname: `/trip/${id}/locations`,
-                state: {id, name, start_date, end_date}
+                state: {id, name, start, end}
               }}>
-                <List divided size='large'>
+                <List divided selection size='large'>
                   <List.Item>
                     <List.Content>
                       <Header as='h3'>
@@ -40,11 +44,15 @@ export default class Trip extends Component {
                     </List.Content>
 
                     <List.Content>
-                      From: {start_date.split('T00:00:00.000Z')}
+                      <p style={{color: 'black', fontSize: 12}}>
+                        From: {start}
+                      </p>
                     </List.Content>
 
                     <List.Content>
-                      To: {end_date.split('T00:00:00.000Z')}
+                      <p style={{color: 'black', fontSize: 12}}>
+                        To: {end}
+                      </p>
                     </List.Content>
                   </List.Item>
                 </List>
@@ -69,8 +77,7 @@ export default class Trip extends Component {
                 null
               }
 
-            </Container>
-          <Divider/>
+          </Container>
         </>
 
     )

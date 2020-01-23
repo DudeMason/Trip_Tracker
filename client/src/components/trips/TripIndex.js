@@ -3,13 +3,14 @@ import {Container, Header, Button, Segment} from 'semantic-ui-react';
 import TripForm from './TripForm';
 import TripList from './TripList';
 import axios from 'axios';
+import { AuthConsumer } from "../../providers/AuthProvider";
 
-export default class TripIndex extends Component {
+class TripIndex extends Component {
 
   state = {trips: [], adding: false, editing: false}
 
   componentDidMount() {
-    axios.get('/api/trips')
+    axios.get(`/api/users/${this.props.auth.id}/trips`)
       .then( res => {
         this.setState({ trips: res.data })
       })
@@ -22,8 +23,8 @@ export default class TripIndex extends Component {
     this.setState({ adding: !this.state.adding, editing: false})
   }
 
-  removeTrip = (id) => {
-    axios.delete(`/api/trips/${id}`)
+  removeTrip = (user_id, id) => {
+    axios.delete(`/api/users/${user_id}/trips/${id}`)
       .then(res => {
         const {trips} = this.state
         this.setState({trips: trips.filter(t=> t.id !==id )})
@@ -37,8 +38,8 @@ export default class TripIndex extends Component {
     this.setState({ editing: !this.state.editing})
   }
 
-  updateTrip = (id, trip) => {
-    axios.put(`/api/trips/${id}`, trip)
+  updateTrip = (user_id, id, trip) => {
+    axios.put(`/api/users/${user_id}/trips/${id}`, trip)
       .then( res => {
         const trips = this.state.trips.map( t => {
           if (t.id === id)
@@ -52,8 +53,8 @@ export default class TripIndex extends Component {
       })
   }
 
-  addTrip = (trip) => {
-    axios.post('/api/trips', trip)
+  addTrip = (user_id, trip) => {
+    axios.post(`/api/users/${user_id}/trips`, trip)
       .then( res => {
         const { trips } = this.state
         this.setState({ trips: [...trips, res.data]})
@@ -65,6 +66,8 @@ export default class TripIndex extends Component {
 
   render() {
 
+    const{auth} = this.props
+
     return(
 
       <>
@@ -72,11 +75,11 @@ export default class TripIndex extends Component {
           Plan a Trip!
         </Header>
         <Container>
-          <TripList trips={this.state.trips} removeTrip={this.removeTrip} updateTrip={this.updateTrip} editing={this.state.editing}/>
+          <TripList trips={this.state.trips} auth={auth} removeTrip={this.removeTrip} updateTrip={this.updateTrip} editing={this.state.editing}/>
           {this.state.adding
           ?
           <>
-            <TripForm addTrip={this.addTrip} toggleAdd={this.toggleAdd}/>
+            <TripForm addTrip={this.addTrip}  auth={auth} toggleAdd={this.toggleAdd}/>
             <Button onClick={this.toggleAdd} basic>Hide</Button>
           </>
           :
@@ -87,6 +90,16 @@ export default class TripIndex extends Component {
           }
         </Container>
       </>
+    )
+  }
+}
+
+export default class ConnectedTripIndex extends Component {
+  render() {
+    return (
+      <AuthConsumer>
+        { auth => <TripIndex {...this.props} auth={auth} />}
+      </AuthConsumer>
     )
   }
 }

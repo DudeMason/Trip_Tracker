@@ -21,7 +21,8 @@ export default class Address extends Component {
     axios.delete(`/api/locations/${this.props.location.state.id}/addresses/${id}`)
       .then(res => {
         const {addresses} = this.state
-        this.setState({addresses: addresses.filter(a => a.id !==id )})
+        this.setState({addresses: addresses.filter(a => a.id !== id )})
+        this.toggleEdit()
       })
       .catch (err => {
         console.log(err)
@@ -31,7 +32,6 @@ export default class Address extends Component {
   updateAddress = (id, address) => {
     axios.put(`/api/locations/${this.props.location.state.id}/addresses/${id}`, address)
       .then( res => {
-        const addresses = this.state
         this.setState({addresses: [address]})
       })
       .catch(err => {
@@ -42,7 +42,6 @@ export default class Address extends Component {
   addAddress = (address) => {
     axios.post(`/api/locations/${this.props.location.state.id}/addresses`, address)
       .then( res => {
-        const { addresses } = this.state
         this.setState({ addresses: [res.data]})
       })
       .catch( err => {
@@ -57,34 +56,39 @@ export default class Address extends Component {
   render() {
 
     const {name, days} = this.props.location.state
+    const {addresses} = this.state
 
     return(
 
       <>
-        <Header as='h1' textAlign='center'>
-          {name}
-        </Header>
+        <div align='center'>
+          <Header as='h1'>
+            {name}
+          </Header>
+          <p>For {days} days</p>
+        </div>
 
         {this.state.edit
         ?
           <Segment>
-            <AddressForm addresses={this.state.addresses} toggleEdit={this.toggleEdit} edit={this.state.edit} updateAddress={this.updateAddress} addAddress={this.addAddress} />
+            <AddressForm address={this.state.addresses[0]} toggleEdit={this.toggleEdit} added={this.state.added} updateAddress={this.updateAddress} addAddress={this.addAddress} />
             <Button onClick={this.toggleEdit} basic color='blue'>Hide</Button>
-            <Button onClick={() => this.removeAddress()} color='red'>Delete Address</Button>
+            <Button onClick={() => this.removeAddress(addresses[0].id)} color='red'>Delete Address</Button>
           </Segment>
         :
           <>
             <Segment>
               {this.state.addresses.map(
                 a =>
-                <>
+                <div key={a.id}>
                   {a.street}
                   <br/>
                   {a.city},
                   {` ${a.state}`}
                   <br/>
                   {a.zip}
-                </>
+                  <br/>
+                </div>
               )}
             </Segment>
             <Button onClick={this.toggleEdit} color='blue'>Edit Address</Button>

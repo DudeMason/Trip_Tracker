@@ -9,22 +9,29 @@ import Navbar from './components/shared/Navbar';
 import Home from './components/shared/Home';
 import LocationList from './components/trips/location/LocationList';
 import Address from './components/trips/location/address/Address';
-
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import FetchUser from './components/auth/FetchUser';
 
 const App = () => (
 
   <div className='backimg'>
     <Navbar/>
-    <Container className='wrapper'>
-      <Switch>
-        <Route exact path='/' component={Home}/>
-        <Route exact path='/about' component={About}/>
-        <Route exact path='/trip' component={TripIndex}/>
-        <Route exact path='/trip/:id/locations' component={LocationList} />
-        <Route exact path='/location/:id/addresses' component={Address} />
-        <Route component={NoMatch}/>
-      </Switch>
-    </Container>
+    <FetchUser>
+      <Container className='wrapper'>
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route exact path='/about' component={About}/>
+          <ProtectedRoute exact path='/trip' component={TripIndex}/>
+          <ProtectedRoute exact path='/trip/:id/locations' component={LocationList} />
+          <ProtectedRoute exact path='/location/:id/addresses' component={Address} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
+          <Route component={NoMatch}/>
+        </Switch>
+      </Container>
+    </FetchUser>
   </div>
 )
 export default App;
