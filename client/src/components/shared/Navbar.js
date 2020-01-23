@@ -12,6 +12,7 @@ class Navbar extends React.Component {
       return (
         <Menu.Menu position='right'>
           <Menu.Item
+            icon='power off'
             name='logout'
             onClick={ () => handleLogout(this.props.history) }
           />
@@ -22,6 +23,7 @@ class Navbar extends React.Component {
         <Menu.Menu position='right'>
           <Link to='/login'>
             <Menu.Item
+              icon='power'
               id='login'
               name='login'
               active={location.pathname === '/login'}
@@ -29,6 +31,7 @@ class Navbar extends React.Component {
           </Link>
           <Link to='/register'>
             <Menu.Item
+              icon='pencil'
               id='register'
               name='register'
               active={location.pathname === '/register'}
@@ -42,7 +45,7 @@ class Navbar extends React.Component {
   render() {
 
     return(
-      <Menu size='massive'>
+      <Menu size='mini' stackable icon='labeled'>
 
         <Link to='/'>
           <Menu.Item>
@@ -59,13 +62,13 @@ class Navbar extends React.Component {
         </Link>
 
         <Menu.Menu position='right'>
+          { this.rightNavItems() }
           <Link to='/about'>
             <Menu.Item>
-              <Icon name='question circle outline' color='green'/>
+              <Icon name='question circle outline' color='violet'/>
               About
             </Menu.Item>
           </Link>
-          { this.rightNavItems() }
         </Menu.Menu>
 
       </Menu>

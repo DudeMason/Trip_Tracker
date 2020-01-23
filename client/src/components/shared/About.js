@@ -3,13 +3,14 @@ import {Header, Segment, Container} from 'semantic-ui-react';
 
 const About = () => (
 
-  <Container>
+  <Container style={{paddingBottom: 200}}>
+    <br/>
     <Header as='h1'>
       About Us
     </Header>
 
     <Segment compact size='huge'>
-      We friggin' built this, bruv. We are cool dudes from DevPoint Labs.
+      We friggin' built this app from scratch. We are cool dudes from DevPoint Labs, in Utah.
     </Segment>
   </Container>
 )
