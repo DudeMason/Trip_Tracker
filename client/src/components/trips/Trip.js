@@ -7,7 +7,7 @@ export default class Trip extends Component {
 
   render() {
 
-    const {id, name, start_date, end_date, edit, toggleIt, removeTrip, editing} = this.props
+    const {id, name, auth, start_date, end_date, edit, toggleIt, removeTrip, editing} = this.props
     let startDate = new Date(`${start_date}`);
     let endDate = new Date(`${end_date}`);
     let start = parseInt(startDate.getUTCMonth()+1) +"/"+ startDate.getUTCDate() +"/"+startDate.getUTCFullYear();
@@ -63,7 +63,7 @@ export default class Trip extends Component {
                     <Icon name='pencil' />
                   </Button>
 
-                  <Button compact onClick={() => removeTrip(id)} color='red'>
+                  <Button compact onClick={() => removeTrip(auth.user.id, id)} color='red'>
                     <Icon name='trash' />
                   </Button>
                 </>
