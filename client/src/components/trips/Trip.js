@@ -1,19 +1,13 @@
 import React, {Component} from 'react';
-import {Header, Button, Icon, Container, List} from 'semantic-ui-react';
+import {Header, Button, Icon, List} from 'semantic-ui-react';
 import TripForm from './TripForm';
 import {Link} from 'react-router-dom';
 
 export default class Trip extends Component {
 
-  state = {edit: false}
-
-  toggleIt = () => {
-    this.setState({edit: !this.state.edit})
-  }
-
   render() {
 
-    const {id, name, start_date, end_date, removeTrip, editing} = this.props
+    const {id, name, start_date, end_date, edit, toggleIt, removeTrip, editing} = this.props
     let startDate = new Date(`${start_date}`);
     let endDate = new Date(`${end_date}`);
     let start = parseInt(startDate.getUTCMonth()+1) +"/"+ startDate.getUTCDate() +"/"+startDate.getUTCFullYear();
@@ -22,20 +16,20 @@ export default class Trip extends Component {
     return(
 
       <>
-        <Container>
+        <div>
           <>
-            {this.state.edit
+            {edit
             ?
-            <>
-              <TripForm {...this.props} toggleIt={this.toggleIt}/>
-            </>
+            <div align='left'>
+              <TripForm {...this.props} toggleIt={toggleIt}/>
+            </div>
             :
             <>
               <Link to={{
                 pathname: `/trip/${id}/locations`,
                 state: {id, name, start, end}
               }}>
-                <List divided selection size='large'>
+                <List selection size='large'>
                   <List.Item>
                     <List.Content>
                       <Header as='h3'>
@@ -65,7 +59,7 @@ export default class Trip extends Component {
               {editing
                 ?
                 <>
-                  <Button compact onClick={() => this.toggleIt()} color='blue'>
+                  <Button compact onClick={toggleIt} color='blue'>
                     <Icon name='pencil' />
                   </Button>
 
@@ -77,7 +71,7 @@ export default class Trip extends Component {
                 null
               }
 
-          </Container>
+          </div>
         </>
 
     )

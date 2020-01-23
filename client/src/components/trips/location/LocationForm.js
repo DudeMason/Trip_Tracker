@@ -18,7 +18,7 @@ export default class LocationForm extends Component {
     e.preventDefault()
     if (this.props.id) {
       this.props.updateLocation( this.props.id, this.state )
-      this.props.toggleHer()
+      this.props.toggleIt()
     } else {
       this.props.addLocation(this.state)
       this.props.toggleAdding()

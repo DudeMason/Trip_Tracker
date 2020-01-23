@@ -3,22 +3,31 @@ import { Form, Input, Button, } from 'semantic-ui-react';
 
 export default class AddressForm extends Component {
 
-  state = {street: '', city: '', state: '', zip: 0}
+  state = {street: '', city: '', state: '', zip: ''}
+
+  componentDidMount() {
+    if (this.props.id) {
+      const {street, city, state, zip} = this.props
+      this.setState({
+        street, city, state, zip
+      })
+    }
+  }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    if (this.props.address.id) {
+    if (this.props.id) {
       this.props.updateAddress( this.props.id, this.state )
-      this.props.toggleEdit()
+      this.props.toggleIt()
     } else {
       this.props.addAddress(this.state)
-      this.props.toggleEdit()
+      this.props.toggleAdding()
     }
     this.setState({
       street: '',
       city: '',
       state: '',
-      zip: 0
+      zip: ''
     })
   }
 
@@ -51,7 +60,6 @@ export default class AddressForm extends Component {
               value={city}
               onChange={this.handleChange}
               label='City'
-              width={5}
             />
 
             <Form.Field

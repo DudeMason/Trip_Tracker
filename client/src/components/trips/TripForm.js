@@ -17,10 +17,10 @@ export default class TripForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     if (this.props.id) {
-      this.props.updateTrip( this.props.auth.id, this.props.id, this.state )
+      this.props.updateTrip( this.props.auth.user.id, this.props.id, this.state )
       this.props.toggleIt()
     } else {
-      this.props.addTrip( this.props.auth.id, this.state)
+      this.props.addTrip( this.props.auth.user.id, this.state)
       this.props.toggleAdd()
     }
     this.setState({
@@ -49,6 +49,7 @@ export default class TripForm extends Component {
             name='name'
             value={name}
             onChange={this.handleChange}
+            width={9}
             label='Name'
           />
 
@@ -58,7 +59,7 @@ export default class TripForm extends Component {
             value={start_date}
             onChange={this.handleChange}
             label='Start Date'
-            width={4}
+            width={6}
             required
           />
 
@@ -68,7 +69,7 @@ export default class TripForm extends Component {
             value={end_date}
             onChange={this.handleChange}
             label='End Date'
-            width={4}
+            width={6}
             required
           />
           <Button type='submit' color='green'>Submit</Button>

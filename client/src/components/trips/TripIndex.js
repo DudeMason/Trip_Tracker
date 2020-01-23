@@ -7,10 +7,10 @@ import { AuthConsumer } from "../../providers/AuthProvider";
 
 class TripIndex extends Component {
 
-  state = {trips: [], adding: false, editing: false}
+  state = {trips: [], adding: false, editing: false, edit: false}
 
   componentDidMount() {
-    axios.get(`/api/users/${this.props.auth.id}/trips`)
+    axios.get(`/api/users/${this.props.auth.user.id}/trips`)
       .then( res => {
         this.setState({ trips: res.data })
       })
@@ -35,7 +35,7 @@ class TripIndex extends Component {
   }
 
   toggleEdit = () => {
-    this.setState({ editing: !this.state.editing})
+    this.setState({ editing: !this.state.editing, edit: false})
   }
 
   updateTrip = (user_id, id, trip) => {
@@ -64,9 +64,14 @@ class TripIndex extends Component {
       })
   }
 
+  toggleIt = () => {
+    this.setState({edit: !this.state.edit})
+  }
+
   render() {
 
     const{auth} = this.props
+    const{adding} = this.state
 
     return(
 
@@ -75,12 +80,19 @@ class TripIndex extends Component {
           Plan a Trip!
         </Header>
         <Container>
-          <TripList trips={this.state.trips} auth={auth} removeTrip={this.removeTrip} updateTrip={this.updateTrip} editing={this.state.editing}/>
-          {this.state.adding
+          <TripList trips={this.state.trips}
+            auth={auth}
+            toggleIt={this.toggleIt}
+            removeTrip={this.removeTrip}
+            updateTrip={this.updateTrip}
+            {...this.state}/>
+          {adding
           ?
           <>
-            <TripForm addTrip={this.addTrip}  auth={auth} toggleAdd={this.toggleAdd}/>
-            <Button onClick={this.toggleAdd} basic>Hide</Button>
+            <Segment>
+              <TripForm addTrip={this.addTrip}  auth={auth} toggleAdd={this.toggleAdd}/>
+              <Button onClick={this.toggleAdd} basic>Hide</Button>
+            </Segment>
           </>
           :
           <Segment compact>

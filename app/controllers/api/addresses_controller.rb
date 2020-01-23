@@ -16,7 +16,7 @@ class Api::AddressesController < ApplicationController
   end
 
   def update
-    @address = @location.addresses(params[:id])
+    @address = @location.addresses.find(params[:id])
     if @address.update(address_params)
       render json: @address
     else

@@ -6,7 +6,7 @@ import LocationForm from './LocationForm';
 
 export default class LocationList extends Component {
 
-  state = {locations: [], editing: false, adding: false}
+  state = {locations: [], editing: false, adding: false, edit: false}
 
   componentDidMount() {
     axios.get(`/api/trips/${this.props.location.state.id}/locations`)
@@ -56,14 +56,16 @@ export default class LocationList extends Component {
   }
 
   toggleEditing = () => {
-    this.setState({editing: !this.state.editing})
+    this.setState({editing: !this.state.editing, edit: false})
   }
 
   toggleAdding = () => {
     this.setState({adding: !this.state.adding, editing: false})
-
   }
 
+  toggleIt= () => {
+    this.setState({edit: !this.state.edit})
+  }
 
   render() {
 
@@ -84,7 +86,13 @@ export default class LocationList extends Component {
         <Grid columns='3' align='center'>
           {locations.map(l =>
             <Grid.Column key={l.id}>
-              <Location key={l.id} {...l} removeLocation={this.removeLocation} toggleEditing={this.toggleEditing} editing={this.state.editing} updateLocation={this.updateLocation}/>
+              <Location key={l.id} {...l}
+                removeLocation={this.removeLocation}
+                toggleEditing={this.toggleEditing}
+                {...this.state}
+                updateLocation={this.updateLocation}
+                toggleIt={this.toggleIt}
+              />
             </Grid.Column>)}
         </Grid>
         {this.state.adding

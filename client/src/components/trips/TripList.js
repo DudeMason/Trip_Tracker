@@ -6,17 +6,17 @@ export default class TripList extends Component {
 
   render() {
 
-    const {removeTrip, trips, updateTrip, editing} = this.props
+    const{trips} = this.props
 
     return(
 
       <>
         <Segment style={{padding: 30}}>
-          <Grid columns='3' align='center' divided stackable>
+          <Grid columns='2' align='center' stackable celled>
           {trips.map(t =>
 
               <Grid.Column key={t.id}>
-                <Trip key={t.id} updateTrip={updateTrip} removeTrip={removeTrip} {...t} editing={editing}/>
+                <Trip key={t.id} {...t} {...this.props}/>
               </Grid.Column>
 
             )}

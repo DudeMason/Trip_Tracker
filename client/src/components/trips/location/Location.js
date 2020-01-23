@@ -5,23 +5,17 @@ import {Link} from 'react-router-dom';
 
 export default class Location extends Component {
 
-  state = {edit: false}
-
-  toggleHer= () => {
-    this.setState({edit: !this.state.edit})
-  }
-
   render() {
 
-    const {id, name, days, editing, removeLocation, updateLocation} = this.props
+    const {id, name, days, editing, edit, toggleIt, removeLocation, updateLocation} = this.props
 
     return(
 
       <Segment compact textAlign="center" size='big'>
-        {this.state.edit
+        {edit
         ?
         <>
-          <Button onClick={this.toggleHer} color='blue' compact>
+          <Button onClick={toggleIt} color='blue' compact>
             <Icon name='minus'/>
           </Button>
 
@@ -29,7 +23,7 @@ export default class Location extends Component {
             <Icon name='trash' />
           </Button>
 
-          <LocationForm {...this.props} toggleHer={this.toggleHer} updateLocation={updateLocation}/>
+          <LocationForm {...this.props} toggleIt={toggleIt} updateLocation={updateLocation}/>
         </>
         :
         <>
@@ -47,7 +41,7 @@ export default class Location extends Component {
             {editing
               ?
               <>
-                <Button compact onClick={this.toggleHer} color='blue'>
+                <Button compact onClick={toggleIt} color='blue'>
                   <Icon name='pencil' />
                 </Button>
 
