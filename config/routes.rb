@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       resources :addresses
     end
   end
+  
+  get '*other', to: 'static#index'
 end
