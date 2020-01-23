@@ -85,7 +85,7 @@ export default class LocationList extends Component {
           </Container>
         </div>
 
-        <Grid columns='3' align='center'>
+        <Grid columns='3' align='center' stackable>
           {locations.map(l =>
             <Grid.Column key={l.id}>
               <Location key={l.id} {...l}

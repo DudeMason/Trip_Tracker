@@ -84,7 +84,7 @@ export default class AddressList extends Component {
           <br/>
         </div>
 
-        <Grid columns='1' align='center'>
+        <Grid columns='1' align='center' stackable>
           {addresses.map(a =>
             <Grid.Column key={a.id}>
               <Address key={a.id} {...a}
