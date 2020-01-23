@@ -45,7 +45,9 @@ class Login extends React.Component {
             <Button primary type='submit'>Submit</Button>
           </Segment>
         </Form>
-        <Link to='/register'>Or register here</Link>
+        <div align='center'>
+          <Link to='/register'>register here</Link>
+        </div>
       </Segment>
     )
   }

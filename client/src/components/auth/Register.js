@@ -1,6 +1,7 @@
 import React from 'react';
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Button, Form, Segment, Header, } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 class Register extends React.Component {
   state = { email: '', password: '', passwordConfirmation: '', };
@@ -59,6 +60,9 @@ class Register extends React.Component {
             <Button primary type='submit'>Submit</Button>
           </Segment>
         </Form>
+        <div align='center'>
+          <Link to='/login'>login here</Link>
+        </div>
       </Segment>
     )
   }
