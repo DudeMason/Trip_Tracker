@@ -5,16 +5,16 @@ import {Link} from 'react-router-dom';
 
 const Home = () => (
 
-  <div style={{marginBottom: '100px'}}>
-    <Header as='h1' textAlign='center'>
+  <div style={{marginBottom: '100px'}} align='center'>
+    <Header as='h1'>
       Trip Planner!
     </Header>
-    <video className="video" id="background-video" loop autoPlay>
+    <video className="video" id="background-video" autoPlay loop>
       <source src={Sea} type="video/mp4" />
     </video>
 
     <Link to='/trip'>
-      <Button fluid size='massive' color='blue' >Plan a Trip!</Button>
+      <Button className='video' size='massive' color='blue' >Plan a Trip!</Button>
     </Link>
 
   </div>
