@@ -75,13 +75,15 @@ export default class LocationList extends Component {
     return(
 
       <>
-        <Header as='h1' textAlign='center'>
-          {name}
-        </Header>
+        <div>
+          <Header as='h1' textAlign='center'>
+            {name}
+          </Header>
 
-        <Container textAlign='center'>
-          From {start} to {end}
-        </Container>
+          <Container textAlign='center'>
+            From {start} to {end}
+          </Container>
+        </div>
 
         <Grid columns='3' align='center'>
           {locations.map(l =>
@@ -102,10 +104,13 @@ export default class LocationList extends Component {
             <Button onClick={this.toggleAdding} basic>Hide</Button>
           </>
           :
-          <Segment compact>
-            <Button onClick={this.toggleAdding} color='green'>Add Location</Button>
-            <Button onClick={this.toggleEditing} color='blue'>Edit</Button>
-          </Segment>
+          <>
+          <br/>
+            <Segment compact>
+              <Button onClick={this.toggleAdding} color='green'>Add Location</Button>
+              <Button onClick={this.toggleEditing} color='blue'>Edit</Button>
+            </Segment>
+          </>
         }
       </>
     )

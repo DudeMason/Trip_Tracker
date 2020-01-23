@@ -81,9 +81,10 @@ export default class AddressList extends Component {
             {name}
           </Header>
           <p>For {days} days</p>
+          <br/>
         </div>
 
-        <Grid columns='3' align='center'>
+        <Grid columns='1' align='center'>
           {addresses.map(a =>
             <Grid.Column key={a.id}>
               <Address key={a.id} {...a}
@@ -103,10 +104,13 @@ export default class AddressList extends Component {
             <Button onClick={this.toggleAdding} basic>Hide</Button>
           </>
           :
-          <Segment compact>
-            <Button onClick={this.toggleAdding} color='green'>Add Address</Button>
-            <Button onClick={this.toggleEditing} color='blue'>Edit</Button>
-          </Segment>
+          <>
+          <br/>
+            <Segment compact>
+              <Button onClick={this.toggleAdding} color='green'>Add Address</Button>
+              <Button onClick={this.toggleEditing} color='blue'>Edit</Button>
+            </Segment>
+          </>
         }
       </>
     )
