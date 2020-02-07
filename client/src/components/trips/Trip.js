@@ -13,6 +13,7 @@ export default class Trip extends Component {
     let start = parseInt(startDate.getUTCMonth()+1) +"/"+ startDate.getUTCDate() +"/"+startDate.getUTCFullYear();
     let end = parseInt(endDate.getUTCMonth()+1) +"/"+ endDate.getUTCDate() +"/"+endDate.getUTCFullYear();
 
+
     return(
 
       <>
