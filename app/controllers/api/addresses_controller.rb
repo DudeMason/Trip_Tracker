@@ -1,41 +1,39 @@
 class Api::AddressesController < ApplicationController
 
-  before_action :set_location
+	before_action :set_location
 
-  def index
-    render json: @location.addresses
-  end
+	def index
+		render json: @location.addresses
+	end
 
-  def create
-    @address = @location.addresses.new(address_params)
-    if @address.save
-      render json: @address
-    else
-      render json: {errors: @address.errors}, status: :unproccessable_entity
-    end
-  end
+	def create
+		@address = @location.addresses.new(address_params)
+		if @address.save
+			render json: @address
+		else render json: {errors: @address.errors}, status: :unproccessable_entity
+		end
+	end
 
-  def update
-    @address = @location.addresses.find(params[:id])
-    if @address.update(address_params)
-      render json: @address
-    else
-      render json: {errors: @address.errors}, status: :unproccessable_entity
-    end
-  end
+	def update
+		@address = @location.addresses.find(params[:id])
+		if @address.update(address_params)
+			render json: @address
+		else render json: {errors: @address.errors}, status: :unproccessable_entity
+		end
+	end
 
-  def destroy
-    @location.addresses.find(params[:id]).destroy
-    render json: {message: 'Address has been wrecked, bro'}
-  end
+	def destroy
+		@location.addresses.find(params[:id]).destroy
+		render json: {message: 'Address has been wrecked, bro'}
+	end
 
-  private
+	private
 
-  def set_location
-    @location = Location.find(params[:location_id])
-  end
+		def set_location
+			@location = Location.find(params[:location_id])
+		end
 
-  def address_params
-    params.require(:address).permit(:street, :city, :state, :zip)
-  end
+		def address_params
+			params.require(:address).permit(:street, :city, :state, :zip)
+		end
 end
