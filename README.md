@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A little trip tracking app for where you're going on your trips and how long you plan to stay, as well as date setting, of course!
 
-Things you may want to cover:
+This was for a hackathon for school, which is where you make an entire app from scratch in under 6 hours. Whoever meets the criteria the best is deemed the winner!
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+We won.
