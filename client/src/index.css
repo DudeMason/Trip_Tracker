@@ -1,35 +1,39 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-.backimg {
-  background-color: #F9F9F9;
-  background-position: center;
-  background-size: cover;
-  height: inherit;
+.backImg {
+    background-color: #F9F9F9;
+    background-position: center;
+    background-size: cover;
+    height: inherit;
 }
 
-.planeCrash:hover  {
-animation: spinner 5s infinite;
-  transform: rotate(360deg);
+.planeCrash:hover {
+    animation: spinner 5s infinite;
+    transform: rotate(360deg);
 }
 
 @keyframes spinner {
-  from {transform: rotate(0deg)};
-  to  {transform: rotate(360deg)} ;
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
 }
 
 .video {
-  margin: 0 auto;
-  width: 90%;
+    margin: 0 auto;
+    width: 90%;
 }
