@@ -16,10 +16,10 @@ export default class TripForm extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 		if (this.props.id) {
-			this.props.updateTrip(this.props.auth.user.id, this.props.id, this.state)
+			this.props.updateTrip(this.props.id, this.state)
 			this.props.toggleIt()
 		} else {
-			this.props.addTrip(this.props.auth.user.id, this.state)
+			this.props.addTrip(this.state)
 			this.props.toggleAdd()
 		}
 		this.setState({
@@ -35,7 +35,6 @@ export default class TripForm extends Component {
 	}
 
 	render() {
-
 		let {name, start_date, end_date} = this.state
 		const {start, end} = this.props
 

@@ -4,7 +4,6 @@ import Trip from './Trip';
 
 export default class TripList extends Component {
 	render() {
-
 		const {trips} = this.props
 
 		return (

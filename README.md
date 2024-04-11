@@ -6,4 +6,6 @@ This was for a hackathon for school, which is where you make an entire app from 
 
 We won.
 
-https://triptrackplan.herokuapp.com/
+NOTE: the backend has been cut off, due to the cost increase of backend services. The app will only store data in memory.
+
+https://triptrackplan.netlify.app

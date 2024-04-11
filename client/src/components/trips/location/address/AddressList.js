@@ -1,58 +1,35 @@
 import React, { Component } from 'react';
 import { Header, Button, Grid, Segment } from 'semantic-ui-react';
 import Address from './Address';
-import axios from 'axios';
 import AddressForm from './AddressForm';
 
 export default class AddressList extends Component {
 	state = {addresses: [], editing: false, adding: false, edit: false}
 
 	componentDidMount() {
-		axios.get(`/api/locations/${this.props.location.state.id}/addresses`)
-		.then(res => {
-			this.setState({addresses: res.data})
-		})
-		.catch(err => {
-			console.log(err)
-		})
+		this.setState({addresses: this.state.addresses})
 	}
 
 	removeAddress = (id) => {
-		axios.delete(`/api/locations/${this.props.location.state.id}/addresses/${id}`)
-		.then(() => {
-			const {addresses} = this.state
-			this.setState({addresses: addresses.filter(l => l.id !== id)})
-		})
-		.catch(err => {
-			console.log(err)
-		})
+		const {addresses} = this.state
+		this.setState({addresses: addresses.filter(l => l.id !== id)})
 	}
 
 	updateAddress = (id, address) => {
-		axios.put(`/api/locations/${this.props.location.state.id}/addresses/${id}`, address)
-		.then(res => {
-			const addresses = this.state.addresses.map(l => {
-				if (l.id === id) {
-					return res.data
-				}
-				return l
-			})
-			this.setState({addresses})
+		const addresses = this.state.addresses.map(a => {
+			if (a.id === id) {
+				return address
+			}
+
+			return a
 		})
-		.catch(err => {
-			console.log(err)
-		})
+
+		this.setState({addresses})
 	}
 
 	addAddress = (address) => {
-		axios.post(`/api/locations/${this.props.location.state.id}/addresses`, address)
-		.then(res => {
-			const {addresses} = this.state
-			this.setState({addresses: [...addresses, res.data]})
-		})
-		.catch(err => {
-			console.log(err)
-		})
+		const {addresses} = this.state
+		this.setState({addresses: [...addresses, address]})
 	}
 
 	toggleEditing = () => {
@@ -68,7 +45,6 @@ export default class AddressList extends Component {
 	}
 
 	render() {
-
 		const {addresses} = this.state;
 		const {name, days} = this.props.location.state;
 

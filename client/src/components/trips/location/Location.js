@@ -5,11 +5,9 @@ import { Link } from 'react-router-dom';
 
 export default class Location extends Component {
 	render() {
-
 		const {id, name, days, editing, edit, toggleIt, removeLocation, updateLocation} = this.props
 
 		return (
-
 			<Segment compact textAlign="center" size='big'>
 				{edit
 				 ?

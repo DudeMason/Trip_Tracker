@@ -1,58 +1,35 @@
 import React, { Component } from 'react';
 import { Header, Button, Grid, Segment, Container } from 'semantic-ui-react';
 import Location from './Location';
-import axios from 'axios';
 import LocationForm from './LocationForm';
 
 export default class LocationList extends Component {
 	state = {locations: [], editing: false, adding: false, edit: false}
 
 	componentDidMount() {
-		axios.get(`/api/trips/${this.props.location.state.id}/locations`)
-		.then(res => {
-			this.setState({locations: res.data})
-		})
-		.catch(err => {
-			console.log(err)
-		})
+		this.setState({locations: this.state.locations})
 	}
 
 	removeLocation = (id) => {
-		axios.delete(`/api/trips/${this.props.location.state.id}/locations/${id}`)
-		.then(() => {
-			const {locations} = this.state
-			this.setState({locations: locations.filter(l => l.id !== id)})
-		})
-		.catch(err => {
-			console.log(err)
-		})
+		const {locations} = this.state
+		this.setState({locations: locations.filter(l => l.id !== id)})
 	}
 
 	updateLocation = (id, location) => {
-		axios.put(`/api/trips/${this.props.location.state.id}/locations/${id}`, location)
-		.then(res => {
-			const locations = this.state.locations.map(l => {
-				if (l.id === id) {
-					return res.data
-				}
-				return l
-			})
-			this.setState({locations})
+		const locations = this.state.locations.map(l => {
+			if (l.id === id) {
+				return location
+			}
+
+			return l
 		})
-		.catch(err => {
-			console.log(err)
-		})
+
+		this.setState({locations})
 	}
 
 	addLocation = (location) => {
-		axios.post(`/api/trips/${this.props.location.state.id}/locations`, location)
-		.then(res => {
-			const {locations} = this.state
-			this.setState({locations: [...locations, res.data]})
-		})
-		.catch(err => {
-			console.log(err)
-		})
+		const {locations} = this.state
+		this.setState({locations: [...locations, location]})
 	}
 
 	toggleEditing = () => {
@@ -68,7 +45,6 @@ export default class LocationList extends Component {
 	}
 
 	render() {
-
 		const {locations} = this.state;
 		const {start, end, name} = this.props.location.state;
 
